@@ -1,6 +1,9 @@
 # Shortcut-Macropad
 Personal macropad for common shortcuts that I use often with 6 keys (cut, copy, paste, change tabs x2, and save), an oled screen and a mini led for status. Made for Blueprint
 
+# Motivation
+Personally, this is my first experience with this kind of hardware event and a little out of my comfort zone. This projects serves as an introduction to CAD, a little bit of circuit python, journaling, and making and designing PCB's.
+
 # Pictures of Completed product and parts
 <img width="546" height="433" alt="image" src="https://github.com/user-attachments/assets/876ef7e5-847d-4d23-82b0-b85053d9f525" />
 <img width="574" height="393" alt="image" src="https://github.com/user-attachments/assets/a54c24b5-4b67-4be1-942f-fc28006cb501" />
