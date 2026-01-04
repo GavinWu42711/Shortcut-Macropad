@@ -18,5 +18,15 @@ Personal macropad for common shortcuts that I use often with 6 keys (cut, copy, 
 <img width="639" height="446" alt="image" src="https://github.com/user-attachments/assets/98ec0799-8b44-4157-9955-5a3ea2b41046" />
 <img width="807" height="557" alt="image" src="https://github.com/user-attachments/assets/dc6e4bec-3a1a-43cc-aabd-45ba6c9f7a47" />
 
+# Specifications
+BOM:
+  - 6x Cherry MX Switches
+  - 1x SK6812 MINI Leds
+  - 1x XIAO RP2040
+  - 6x Blank DSA Keycaps
+  - 1x 0.91 in. I2C OLED Display (128 x 32, SSD 1306)
+  - 4x M3x16mm screws
 
-# BOM
+Other:
+  - KMK Firmware
+  - Top & Bottom of case (3D printed)
