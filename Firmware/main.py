@@ -13,7 +13,7 @@ from kmk.extensions import statusLED
 from kmk.modules.layers import Layers
 
 #For OLED display
-from kmk.extensions.display import Display, TextEntry, ImageEntry
+from kmk.extensions.display import Display, TextEntry
 from kmk.extensions.display.ssd1306 import SSD1306
 import busio
 
@@ -21,23 +21,26 @@ import busio
 keyboard = KMKKeyboard()
 keyboard.modules.append(Layers())
 
+
 #Adding display extensions
 i2c_bus = busio.I2C(board.D5, board.D4)
 driver = SSD1306(i2c = i2c_bus)
 display = Display(display = driver, width = 128, height = 32, brightness = 0.8)
 display.entries = [
-    TextEntry(text = "Cutting", x = 0, y = 16, x_anchor = "L", y_anchor = "T", layer = 0),
-    TextEntry(text = "Copying", x = 0, y = 16, x_anchor = "L", y_anchor = "T", layer = 1),
-    TextEntry(text = "Pasting", x = 0, y = 16, x_anchor = "L", y_anchor = "T", layer = 2),
-    TextEntry(text = "Left Tab", x = 0, y = 16, x_anchor = "L", y_anchor = "T", layer = 3),
-    TextEntry(text = "Right Tab", x = 0, y = 16, x_anchor = "L", y_anchor = "T", layer = 4),
-    TextEntry(text = "Saving", x = 0, y = 16, x_anchor = "L", y_anchor = "T", layer = 5)
+    TextEntry(text = "MACROPAD!", x = 0, y = 16, x_anchor = "L", y_anchor = "T", layer = 0),
 ]
 keyboard.extensions.append(display)
 
 #Add the macro extension
 macros = Macros()
 keyboard.modules.append(macros)
+cut = KC.MACRO(Press(KC.LCTRL), Tap(KC.X), Release(KC.LCTRL))
+copy = KC.MACRO(Press(KC.LCTRL), Tap(KC.C), Release(KC.LCTRL))
+paste = KC.MACRO(Press(KC.LCTRL), Tap(KC.V), Release(KC.LCTRL))
+right_tab = KC.MACRO(Press(KC.LCTRL), Tap(KC.TAB), Release(KC.LCTRL))
+left_tab = KC.MACRO(Press(KC.LCTRL), Press(KC.LSFT), Tap(KC.TAB), Release(KC.LCTRL), Release(KC.LSFT))
+save = KC.MACRO(Press(KC.LCTRL), Tap(KC.S), Release(KC.LCTRL))
+
 
 #Add the statusLED extension
 #statusLed = statusLED(led_pin = [board.D3], brightness = 30)
@@ -56,50 +59,14 @@ keyboard.matrix = KeysScanner(
 #Look here for keycodes: https://github.com/KMKfw/kmk_firmware/blob/main/docs/en/keycodes.md
 #And here for macros: https://github.com/KMKfw/kmk_firmware/blob/main/docs/en/macros.md
 keyboard.keymap = [[
-    KC.MACRO(KC.TO(0), Press(KC.LCMD), Tap(KC.X), Release(KC.LCMD)),  
-    KC.MACRO(KC.TO(1), Press(KC.LCMD), Tap(KC.C), Release(KC.LCMD)),  
-    KC.MACRO(KC.TO(2), Press(KC.LCMD), Tap(KC.V), Release(KC.LCMD)), 
-    KC.MACRO(KC.TO(3), Press(KC.LCMD), Tap(KC.TAB), Release(KC.LCMD)), 
-    KC.MACRO(KC.TO(4), Press(KC.LCMD(KC.LSFT)), Tap(KC.TAB), Release(KC.LCMD)), 
-    KC.MACRO(KC.TO(5), Press(KC.LCMD), Tap(KC.S), Release(KC.LCMD))],
-    
-    #To prevent soft-locking from changes in layers
-    [
-    KC.MACRO(KC.TO(0), Press(KC.LCMD), Tap(KC.X), Release(KC.LCMD)),  
-    KC.MACRO(KC.TO(1), Press(KC.LCMD), Tap(KC.C), Release(KC.LCMD)),  
-    KC.MACRO(KC.TO(2), Press(KC.LCMD), Tap(KC.V), Release(KC.LCMD)), 
-    KC.MACRO(KC.TO(3), Press(KC.LCMD), Tap(KC.TAB), Release(KC.LCMD)), 
-    KC.MACRO(KC.TO(4), Press(KC.LCMD(KC.LSFT)), Tap(KC.TAB), Release(KC.LCMD)), 
-    KC.MACRO(KC.TO(5), Press(KC.LCMD), Tap(KC.S), Release(KC.LCMD))
-],[
-    KC.MACRO(KC.TO(0), Press(KC.LCMD), Tap(KC.X), Release(KC.LCMD)),  
-    KC.MACRO(KC.TO(1), Press(KC.LCMD), Tap(KC.C), Release(KC.LCMD)),  
-    KC.MACRO(KC.TO(2), Press(KC.LCMD), Tap(KC.V), Release(KC.LCMD)), 
-    KC.MACRO(KC.TO(3), Press(KC.LCMD), Tap(KC.TAB), Release(KC.LCMD)), 
-    KC.MACRO(KC.TO(4), Press(KC.LCMD(KC.LSFT)), Tap(KC.TAB), Release(KC.LCMD)), 
-    KC.MACRO(KC.TO(5), Press(KC.LCMD), Tap(KC.S), Release(KC.LCMD))
-],[
-    KC.MACRO(KC.TO(0), Press(KC.LCMD), Tap(KC.X), Release(KC.LCMD)),  
-    KC.MACRO(KC.TO(1), Press(KC.LCMD), Tap(KC.C), Release(KC.LCMD)),  
-    KC.MACRO(KC.TO(2), Press(KC.LCMD), Tap(KC.V), Release(KC.LCMD)), 
-    KC.MACRO(KC.TO(3), Press(KC.LCMD), Tap(KC.TAB), Release(KC.LCMD)), 
-    KC.MACRO(KC.TO(4), Press(KC.LCMD(KC.LSFT)), Tap(KC.TAB), Release(KC.LCMD)), 
-    KC.MACRO(KC.TO(5), Press(KC.LCMD), Tap(KC.S), Release(KC.LCMD))
-],[
-    KC.MACRO(KC.TO(0), Press(KC.LCMD), Tap(KC.X), Release(KC.LCMD)),  
-    KC.MACRO(KC.TO(1), Press(KC.LCMD), Tap(KC.C), Release(KC.LCMD)),  
-    KC.MACRO(KC.TO(2), Press(KC.LCMD), Tap(KC.V), Release(KC.LCMD)), 
-    KC.MACRO(KC.TO(3), Press(KC.LCMD), Tap(KC.TAB), Release(KC.LCMD)), 
-    KC.MACRO(KC.TO(4), Press(KC.LCMD(KC.LSFT)), Tap(KC.TAB), Release(KC.LCMD)), 
-    KC.MACRO(KC.TO(5), Press(KC.LCMD), Tap(KC.S), Release(KC.LCMD))
-],[
-    KC.MACRO(KC.TO(0), Press(KC.LCMD), Tap(KC.X), Release(KC.LCMD)),  
-    KC.MACRO(KC.TO(1), Press(KC.LCMD), Tap(KC.C), Release(KC.LCMD)),  
-    KC.MACRO(KC.TO(2), Press(KC.LCMD), Tap(KC.V), Release(KC.LCMD)), 
-    KC.MACRO(KC.TO(3), Press(KC.LCMD), Tap(KC.TAB), Release(KC.LCMD)), 
-    KC.MACRO(KC.TO(4), Press(KC.LCMD(KC.LSFT)), Tap(KC.TAB), Release(KC.LCMD)), 
-    KC.MACRO(KC.TO(5), Press(KC.LCMD), Tap(KC.S), Release(KC.LCMD))
-]]
+    cut,
+    copy,
+    paste,
+    left_tab,
+    right_tab,
+    save]]
 
-keyboard.go()
+if __name__ == "__main__":
+    keyboard.go()
+
 
