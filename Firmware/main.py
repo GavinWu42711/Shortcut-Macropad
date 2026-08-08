@@ -7,7 +7,6 @@ from kmk.scanners.keypad import KeysScanner
 from kmk.keys import KC
 from kmk.modules.macros import Macros
 from kmk.modules.macros import Press, Release, Tap, Macros
-from kmk.extensions import statusLED
 
 #For the display
 from kmk.modules.layers import Layers
@@ -41,11 +40,6 @@ right_tab = KC.MACRO(Press(KC.LCTRL), Tap(KC.TAB), Release(KC.LCTRL))
 left_tab = KC.MACRO(Press(KC.LCTRL), Press(KC.LSFT), Tap(KC.TAB), Release(KC.LCTRL), Release(KC.LSFT))
 save = KC.MACRO(Press(KC.LCTRL), Tap(KC.S), Release(KC.LCTRL))
 
-
-#Add the statusLED extension
-#statusLed = statusLED(led_pin = [board.D3], brightness = 30)
-#keyboard.extensions.append(statusLED)
-
 #Define your pins here!
 PINS = [board.D0, board.D10, board.D8, board.D7,board.D9,board.D1]
 
@@ -68,5 +62,6 @@ keyboard.keymap = [[
 
 if __name__ == "__main__":
     keyboard.go()
+
 
 
